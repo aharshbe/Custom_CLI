@@ -1,7 +1,7 @@
 #ifndef _header_
 #define _header_
 
-/* Include files */
+/* Include headers */
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -10,16 +10,24 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-/* Defines */
+/* Marcos */
 #define PROMPT "--> "
 #define BUFF 1024
 
 /* Structs */
+/**
+* struct builtins: to keep builtins in one place
+* @command: the command to execute
+* @f: the corresponding function for the command
+*/
 typedef struct builtins {
 	char *command;
 	void (*f)(char *args);
 } cmds;
-
+/**
+* struct path_parsed: store the path ':' delimited
+* @abs: each path token
+*/
 typedef struct path_parsed {
 	char *abs;
 } path_p;
