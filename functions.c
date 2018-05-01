@@ -156,7 +156,7 @@ void env(char *buffer)
 		printf("%s\n", environ[i]);
 }
 
-/* Contatinates two strings with a '/' in detween */
+/* Contatinates two strings with a '/' in between */
 char *strcat_slash(char *dest, char *src)
 {
 	int size = 0, size2 = 0, j = 0, k = 0, total = 0;
