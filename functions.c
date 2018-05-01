@@ -40,14 +40,23 @@ int check_builtins(char *command)
 }
 
 /* Execve function */
-
+void execute(char **args)
+{
+	printf("executed\n");
+	free(args);
+}
 
 /* Tokenize function */
 void tokenize(char *buffer)
 {
 	char *token = NULL, *save;
-	const char *delim = " \n", *args[BUFF];
+	const char *delim = " \n";
+	char **args;
 	int i, j = 0;
+
+	args = malloc(BUFF);
+	if (!args)
+		printf("malloc error\n");
 
 	/** 
 	* Making a copy of buffer 
@@ -65,6 +74,8 @@ void tokenize(char *buffer)
 
 	for ( j = 0; j <= i; j++, i--)
 		printf("token[%d] = %s\n", j, args[j]);
+
+	execute(args);
 }
 
 

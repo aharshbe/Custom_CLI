@@ -27,5 +27,6 @@ void history(char *buffer);
 void clear(char *buffer);
 void tokenize(char *buffer);
 void help(char *buffer);
+void execute(char **args);
 
 #endif
