@@ -12,7 +12,6 @@
 #define PROMPT "--> "
 
 /* Structs */
-
 typedef struct builtins {
 	char *command;
 	void (*f)(char *args);

@@ -6,13 +6,10 @@ int main(void)
 	char *user_input = NULL;
 	unsigned int status = 0;
 
-	while (1)
-	{
-		/* Get user input */
-		user_input = gen_input();
-		status = check_builtins(user_input);
-		
-		if (status)
+	/* Infinitely get user input */
+	while ((user_input = gen_input()))
+	{	
+		if ((status = check_builtins(user_input)))
 		{
 			printf("built-in found\n");
 			free(user_input);
@@ -24,5 +21,6 @@ int main(void)
 			free(user_input);
 		}
 	}
+	/* Call exit wraper */
 	exit_CLI(user_input);
 }
