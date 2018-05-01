@@ -21,6 +21,8 @@ int main(int argc, char **argv)
 		}
 		else
 		{
+			/* Create secondary 
+			child process for execve */
 			if (!(fork()))
 			{
 				args = tokenize(user_input);
@@ -29,6 +31,8 @@ int main(int argc, char **argv)
 			}
 			else
 			{
+				/* Parent process that is 
+				waiting for child to finish */
 				free(user_input);
 				wait(&child);
 			}
