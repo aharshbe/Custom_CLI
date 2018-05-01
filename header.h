@@ -7,6 +7,8 @@
 #include <unistd.h>
 #include <string.h>
 #include <ctype.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 /* Defines */
 #define PROMPT "--> "
@@ -28,5 +30,6 @@ void clear(char *buffer);
 char **tokenize(char *buffer);
 void help(char *buffer);
 void execute(char **args);
+void env(char *buffer);
 
 #endif

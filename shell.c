@@ -1,26 +1,34 @@
 #include "header.h"
 
-int main(void)
+int main(int argc, char **argv)
 {
 
 	char *user_input = NULL, **args;
 	unsigned int status = 0;
+	int child = 0;
+
+	(void)argc;
+	(void)argv;
 
 	/* Infinitely get user input */
 	while ((user_input = gen_input()))
 	{	
+		/* Check for builtins */
 		if ((status = check_builtins(user_input)))
 		{
-			printf("built-in found\n");
+			//printf("built-in found\n");
 			free(user_input);
 			continue;
 		}
 		else
 		{
-			printf("built-in not found\n");
-			args = tokenize(user_input);
-			execute(args);
-			free(user_input);
+			if (!(fork()))
+			{
+				args = tokenize(user_input);
+				execute(args);
+			}
+			else
+				wait(&child);
 		}
 	}
 	/* Call exit wrapper */

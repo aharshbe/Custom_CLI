@@ -19,11 +19,12 @@ int check_builtins(char *command)
 		{"history", history},
 		{"clear", clear},
 		{"c", clear},
-		{"env", NULL},
+		{"env", env},
 		{"unset", NULL}, 
 		{"set", NULL},
 		{"help", help},
 		{"alias", NULL},
+		{"cd", NULL},
 		{NULL, NULL}
 	};
 
@@ -42,8 +43,10 @@ int check_builtins(char *command)
 /* Execve function */
 void execute(char **args)
 {
-	printf("executed\n");
-	free(args);
+	extern char **environ;
+	char *new[] = {"/bin/ls", "-li"};
+	(void)args;
+	execve(new[0], new, environ);
 }
 
 /* Tokenize function */
@@ -76,7 +79,6 @@ char **tokenize(char *buffer)
 
 	return (args);
 }
-
 
 /* Get input function */
 char *gen_input(void)
@@ -119,5 +121,15 @@ void help(char *buffer)
 {
 	(void)buffer;
 	printf("help\n");
+}
+
+/* Prints environment variables */
+void env(char *buffer)
+{
+	extern char **environ;
+	(void)buffer;
+
+	for (int i = 0; environ[i]; i++)
+		printf("%s\n", environ[i]);
 }
 
