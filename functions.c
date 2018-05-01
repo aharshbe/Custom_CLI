@@ -44,9 +44,28 @@ int check_builtins(char *command)
 void execute(char **args)
 {
 	extern char **environ;
-	char *new[] = {"/bin/ls", "-li", NULL};
-	execve(new[0], new, environ);
+	char *path = getenv("PATH"), *sub_token = NULL, *command;
+	const char *delim = ":";
+	int i, status = 0;
+	path_p list[BUFF];
+
+	sub_token = strtok(path, delim);
+	for (i = 0; sub_token; i++)
+	{
+		list[i].abs = sub_token;
+		sub_token = strtok(NULL, delim);
+	}
+	for (int j = 0; j < i; j++)
+	{
+		command = strcat_slash(list[j].abs, args[0]);
+		status = access(command, F_OK);
+
+		if (!status)
+			execve(command, args, environ);
+	}
+	free(command);
 	free(args);
+	exit(0);
 }
 
 /* Tokenize function */
@@ -122,5 +141,33 @@ void env(char *buffer)
 
 	for (int i = 0; environ[i]; i++)
 		printf("%s\n", environ[i]);
+}
+
+char *strcat_slash(char *dest, char *src)
+{
+	int size = 0, size2 = 0, j = 0, k = 0, total = 0;
+	char *final;
+
+	while (dest[size])
+		size++;
+
+	while (src[size2])
+		size2++;
+
+	final = malloc(total = size + size2 + 2);
+	if (!final)
+		perror("final");
+
+	while (dest[j])
+	{
+		final[j] = dest[j];
+		j++;
+	}
+	final[j++] = '/';
+
+	for (k = 0; j < total; j++, k++)
+		final[j] = src[k];
+
+	return (final);
 }
 

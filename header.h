@@ -20,6 +20,10 @@ typedef struct builtins {
 	void (*f)(char *args);
 } cmds;
 
+typedef struct path_parsed {
+	char *abs;
+} path_p;
+
 /* Functions */
 void print_prompt(void);
 char *gen_input(void);
@@ -31,5 +35,6 @@ char **tokenize(char *buffer);
 void help(char *buffer);
 void execute(char **args);
 void env(char *buffer);
+char *strcat_slash(char *dest, char *src);
 
 #endif

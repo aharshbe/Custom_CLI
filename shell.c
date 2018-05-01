@@ -25,8 +25,8 @@ int main(int argc, char **argv)
 			if (!(fork()))
 			{
 				args = tokenize(user_input);
-				free(user_input);
 				execute(args);
+				free(user_input);
 			}
 			else
 			{
