@@ -1,5 +1,5 @@
 # Custom_CLI
-## Current under construction!
+## Currently under construction!
 `(feel free to browse anyway)`
 
 #### Author:
