@@ -18,9 +18,10 @@ int main(void)
 		else
 		{
 			printf("built-in not found\n");
+			tokenize(user_input);
 			free(user_input);
 		}
 	}
-	/* Call exit wraper */
+	/* Call exit wrapper */
 	exit_CLI(user_input);
 }

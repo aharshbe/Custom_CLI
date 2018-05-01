@@ -22,6 +22,8 @@ int check_builtins(char *command)
 		{"env", NULL},
 		{"unset", NULL}, 
 		{"set", NULL},
+		{"help", help},
+		{"alias", NULL},
 		{NULL, NULL}
 	};
 
@@ -37,10 +39,30 @@ int check_builtins(char *command)
 	return (0);
 }
 
-/* Eecve function */
+/* Execve function */
 
 
 /* Tokenize function */
+void tokenize(char *buffer)
+{
+	char *token = NULL;
+	const char *delim = " \n";
+	char *save;
+
+	/** 
+	* Making a copy of buffer 
+	* because strtok will kill it 
+	**/
+	save = buffer;
+	(void)save;
+
+	token = strtok(buffer, delim);
+	while (token)
+	{
+		printf("%s\n", token);
+		token = strtok(NULL, delim);
+	}
+}
 
 
 /* Get input function */
@@ -78,5 +100,11 @@ void clear(char *buffer)
 {
 	(void)buffer;
 	system("@cls||clear");
+}
+
+void help(char *buffer)
+{
+	(void)buffer;
+	printf("help\n");
 }
 
