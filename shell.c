@@ -1,4 +1,10 @@
 #include "header.h"
+/**
+* main: the main c file for custom CLI
+* @argc: argument count 
+* @argv: argument array
+* Return: returns 0 on success or other errors on failure
+*/
 
 int main(int argc, char **argv)
 {
