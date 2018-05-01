@@ -25,7 +25,7 @@ int check_builtins(char *command);
 void exit_CLI(char *buffer);
 void history(char *buffer);
 void clear(char *buffer);
-void tokenize(char *buffer);
+char **tokenize(char *buffer);
 void help(char *buffer);
 void execute(char **args);
 

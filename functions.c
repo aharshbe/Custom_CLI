@@ -47,11 +47,10 @@ void execute(char **args)
 }
 
 /* Tokenize function */
-void tokenize(char *buffer)
+char **tokenize(char *buffer)
 {
-	char *token = NULL, *save;
+	char *token = NULL, *save, **args;
 	const char *delim = " \n";
-	char **args;
 	int i, j = 0;
 
 	args = malloc(BUFF);
@@ -75,7 +74,7 @@ void tokenize(char *buffer)
 	for ( j = 0; j <= i; j++, i--)
 		printf("token[%d] = %s\n", j, args[j]);
 
-	execute(args);
+	return (args);
 }
 
 

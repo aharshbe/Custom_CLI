@@ -3,7 +3,7 @@
 int main(void)
 {
 
-	char *user_input = NULL;
+	char *user_input = NULL, **args;
 	unsigned int status = 0;
 
 	/* Infinitely get user input */
@@ -18,7 +18,8 @@ int main(void)
 		else
 		{
 			printf("built-in not found\n");
-			tokenize(user_input);
+			args = tokenize(user_input);
+			execute(args);
 			free(user_input);
 		}
 	}
