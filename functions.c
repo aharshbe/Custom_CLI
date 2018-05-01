@@ -51,7 +51,7 @@ void execute(char **args)
 
 
 	/**
-	* Create a token of the path ':'' delimeted 
+	* Create a token of the path ':' delimeted 
 	* and add to 'path_p' struct
 	*/
 	sub_token = strtok(path, delim);
