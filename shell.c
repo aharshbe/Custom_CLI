@@ -25,10 +25,14 @@ int main(int argc, char **argv)
 			if (!(fork()))
 			{
 				args = tokenize(user_input);
+				free(user_input);
 				execute(args);
 			}
 			else
+			{
+				free(user_input);
 				wait(&child);
+			}
 		}
 	}
 	/* Call exit wrapper */

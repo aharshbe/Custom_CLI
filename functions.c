@@ -44,28 +44,21 @@ int check_builtins(char *command)
 void execute(char **args)
 {
 	extern char **environ;
-	char *new[] = {"/bin/ls", "-li"};
-	(void)args;
+	char *new[] = {"/bin/ls", "-li", NULL};
 	execve(new[0], new, environ);
+	free(args);
 }
 
 /* Tokenize function */
 char **tokenize(char *buffer)
 {
-	char *token = NULL, *save, **args;
+	char *token = NULL, **args;
 	const char *delim = " \n";
-	int i, j = 0;
+	int i;
 
 	args = malloc(BUFF);
 	if (!args)
 		printf("malloc error\n");
-
-	/** 
-	* Making a copy of buffer 
-	* because strtok will kill it 
-	**/
-	save = buffer;
-	(void)save;
 
 	token = strtok(buffer, delim);
 	for (i = 0; token; i++)
@@ -73,9 +66,7 @@ char **tokenize(char *buffer)
 		args[i] = token;
 		token = strtok(NULL, delim);
 	}
-
-	for ( j = 0; j <= i; j++, i--)
-		printf("token[%d] = %s\n", j, args[j]);
+	args[i] = NULL;
 
 	return (args);
 }
