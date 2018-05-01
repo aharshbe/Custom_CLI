@@ -67,6 +67,10 @@ void execute(char **args)
 	for (int j = 0; j < i; j++)
 	{
 		command = strcat_slash(list[j].abs, args[0]);
+		/**
+		* Validate path executable exists
+		* returns 1 if it doesn't and 0 if it does
+		*/
 		status = access(command, F_OK);
 
 		if (!status)
