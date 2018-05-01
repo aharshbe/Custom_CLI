@@ -90,7 +90,7 @@ char **tokenize(char *buffer)
 
 	args = malloc(BUFF);
 	if (!args)
-		printf("malloc error\n");
+		perror("args");
 
 	token = strtok(buffer, delim);
 	for (i = 0; token; i++)
