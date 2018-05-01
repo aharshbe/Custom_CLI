@@ -45,9 +45,9 @@ int check_builtins(char *command)
 /* Tokenize function */
 void tokenize(char *buffer)
 {
-	char *token = NULL;
-	const char *delim = " \n";
-	char *save;
+	char *token = NULL, *save;
+	const char *delim = " \n", *args[BUFF];
+	int i, j = 0;
 
 	/** 
 	* Making a copy of buffer 
@@ -57,11 +57,14 @@ void tokenize(char *buffer)
 	(void)save;
 
 	token = strtok(buffer, delim);
-	while (token)
+	for (i = 0; token; i++)
 	{
-		printf("%s\n", token);
+		args[i] = token;
 		token = strtok(NULL, delim);
 	}
+
+	for ( j = 0; j <= i; j++, i--)
+		printf("token[%d] = %s\n", j, args[j]);
 }
 
 

@@ -10,6 +10,7 @@
 
 /* Defines */
 #define PROMPT "--> "
+#define BUFF 1024
 
 /* Structs */
 typedef struct builtins {
