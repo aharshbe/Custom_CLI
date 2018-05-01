@@ -16,7 +16,6 @@ int main(int argc, char **argv)
 		/* Check for builtins */
 		if ((status = check_builtins(user_input)))
 		{
-			//printf("built-in found\n");
 			free(user_input);
 			continue;
 		}

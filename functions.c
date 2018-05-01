@@ -49,12 +49,21 @@ void execute(char **args)
 	int i, status = 0;
 	path_p list[BUFF];
 
+
+	/**
+	* Create a token of the path ':'' delimeted 
+	* and add to 'path_p' struct
+	*/
 	sub_token = strtok(path, delim);
 	for (i = 0; sub_token; i++)
 	{
 		list[i].abs = sub_token;
 		sub_token = strtok(NULL, delim);
 	}
+	/**
+	* Concatinate the path token and the command
+	* to generate the execve arguement to execute
+	*/
 	for (int j = 0; j < i; j++)
 	{
 		command = strcat_slash(list[j].abs, args[0]);
