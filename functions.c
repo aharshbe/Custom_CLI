@@ -1,6 +1,9 @@
 #include "header.h"
 
-/* Show prompt function */
+/**
+* Print command line prompt
+* Return: void
+**/
 void print_prompt(void)
 {
 	write(1, PROMPT, strlen(PROMPT));
@@ -41,7 +44,11 @@ int check_builtins(char *command)
 	return (0);
 }
 
-/* Execve function */
+/**
+* Execute user command
+* @args: args to execute
+* Return: void
+**/
 void execute(char **args)
 {
 	extern char **environ;
@@ -82,7 +89,11 @@ void execute(char **args)
 	exit(0);
 }
 
-/* Tokenize function */
+/**
+* Tokenize the user input
+* @buffer: buffer to tokenize
+* Return: tokenized buffer
+**/
 char **tokenize(char *buffer)
 {
 	char *token = NULL, **args;
@@ -93,6 +104,7 @@ char **tokenize(char *buffer)
 	if (!args)
 		perror("args");
 
+	/* Create toke from buffer */
 	token = strtok(buffer, delim);
 	for (i = 0; token; i++)
 	{
@@ -104,7 +116,10 @@ char **tokenize(char *buffer)
 	return (args);
 }
 
-/* Get input function */
+/**
+* Get user input
+* Return: input
+**/
 char *gen_input(void)
 {
 	char *user_input = NULL;
@@ -120,14 +135,22 @@ char *gen_input(void)
 	return (user_input);
 }
 
-/* Exit CLI: free buffer and exit program */
+/**
+* Exit CLI: free buffer and exit program
+* @buffer: buffer to free
+* Return: void
+**/
 void exit_CLI(char *buffer)
 {
 	free(buffer);
 	exit (0);
 }
 
-/* Print CLI history */
+/**
+* Print CLI history from file created
+* @buffer: void
+* Return: void
+**/
 void history(char *buffer)
 {
 	FILE *fp;
@@ -136,6 +159,8 @@ void history(char *buffer)
 	int i = 1;
 	
 	fp = fopen("./.history.txt", "r");
+	if (!fp)
+		perror("File not found");
 
 	while (fgets(buff, sizeof(buff), fp))
 	{
@@ -149,20 +174,26 @@ void history(char *buffer)
 
 /**
 * Add commands to history
-* @buffer: not used
+* @buffer: user command to add
 * Return: void
 **/
 void add_to_history(char *buffer)
 {
 	FILE *fp;
 
+	/* Open file if it exists and append or create it */
 	fp = fopen("./.history.txt", "a+");
 	fputs(buffer, fp);
+	/* Add new line after command for clarity */
 	fputs("\n", fp);
 	fclose(fp);
 }
 
-/* Clears the screen */
+/**
+* Clear the screen
+* @buffer: void
+* Return: void
+**/
 void clear(char *buffer)
 {
 	(void)buffer;
@@ -175,7 +206,11 @@ void help(char *buffer)
 	printf("help\n");
 }
 
-/* Prints environment variables */
+/**
+* Prints environment variables
+* @buffer: void
+* Return: void
+**/
 void env(char *buffer)
 {
 	extern char **environ;
@@ -185,7 +220,12 @@ void env(char *buffer)
 		printf("%s\n", environ[i]);
 }
 
-/* Contatinates two strings with a '/' in between */
+/**
+* Concatinates two strings and adds a '/' in between
+* @dest: destination string
+* @src: source string
+* Return: new string
+**/
 char *strcat_slash(char *dest, char *src)
 {
 	int size = 0, size2 = 0, j = 0, k = 0, total = 0;
