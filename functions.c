@@ -146,6 +146,8 @@ void history(char *buffer)
 	}
 }
 
+/* Add to user history, creates a hidden text file
+to read from */
 void add_to_history(char *buffer)
 {
 	FILE *fp;
