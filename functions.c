@@ -13,8 +13,7 @@ void print_prompt(void)
 **/
 int check_builtins(char *command)
 {
-	for (int i = 0; history_save[i]; i++)
-		printf("%s\n", history_save[i]);
+
 	/* Create struct of builtins */
 	cmds builtins[] = {
 		{"exit", exit_CLI},
