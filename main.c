@@ -19,6 +19,9 @@ int main(int argc, char **argv)
 	/* Infinitely get user input */
 	while ((user_input = gen_input()))
 	{	
+		/* add user input to history */
+		add_to_history(user_input);
+
 		/* Check for builtins */
 		if ((status = check_builtins(user_input)))
 		{

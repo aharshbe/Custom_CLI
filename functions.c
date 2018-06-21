@@ -13,6 +13,8 @@ void print_prompt(void)
 **/
 int check_builtins(char *command)
 {
+	for (int i = 0; history_save[i]; i++)
+		printf("%s\n", history_save[i]);
 	/* Create struct of builtins */
 	cmds builtins[] = {
 		{"exit", exit_CLI},
@@ -129,8 +131,29 @@ void exit_CLI(char *buffer)
 /* Print CLI history */
 void history(char *buffer)
 {
+	FILE *fp;
+	char buff[BUFF];
 	(void)buffer;
-	printf("history\n");
+	int i = 1;
+	
+	fp = fopen("./.history.txt", "r");
+
+	while (fgets(buff, sizeof(buff), fp))
+	{
+		if (feof(fp))
+			break;
+		printf("%d  %s", i++, buff);
+	}
+}
+
+void add_to_history(char *buffer)
+{
+	FILE *fp;
+
+	fp = fopen("./.history.txt", "a+");
+	fputs(buffer, fp);
+	fputs("\n", fp);
+	fclose(fp);
 }
 
 /* Clears the screen */

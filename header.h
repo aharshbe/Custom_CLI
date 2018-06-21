@@ -14,6 +14,9 @@
 #define PROMPT "--> "
 #define BUFF 1024
 
+/* Global array */
+char *history_save[BUFF];
+
 /* Structs */
 /**
 * struct builtins: to keep builtins in one place
@@ -37,6 +40,7 @@ void print_prompt(void);
 char *gen_input(void);
 int check_builtins(char *command);
 void exit_CLI(char *buffer);
+void add_to_history(char *buffer);
 void history(char *buffer);
 void clear(char *buffer);
 char **tokenize(char *buffer);
