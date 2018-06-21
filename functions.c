@@ -139,14 +139,19 @@ void history(char *buffer)
 
 	while (fgets(buff, sizeof(buff), fp))
 	{
+		/* Check for the end of the file */
 		if (feof(fp))
 			break;
 		printf("%d  %s", i++, buff);
 	}
+	fclose(fp);
 }
 
-/* Add to user history, creates a hidden text file
-to read from */
+/**
+* Add commands to history
+* @buffer: not used
+* Return: void
+**/
 void add_to_history(char *buffer)
 {
 	FILE *fp;
