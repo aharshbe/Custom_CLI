@@ -14,9 +14,6 @@
 #define PROMPT "--> "
 #define BUFF 1024
 
-/* Global array */
-char *history_save[BUFF];
-
 /* Structs */
 /**
 * struct builtins: to keep builtins in one place
